@@ -4,6 +4,8 @@
 /node_modules
 /.pnp
 .pnp.js
+.yarn/install-state.gz
+package-lock.json
 
 # testing
 /coverage
@@ -34,3 +36,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# uploads
+/uploads/*
+!/uploads/.gitkeep
+
+# database
+/prisma/migrations
+
+
