@@ -12,6 +12,7 @@ A beautiful, self-hosted photo sharing platform for special events. Create magic
 - 🔒 **Secure**: Self-hosted with user authentication
 - 📱 **Responsive**: Works perfectly on mobile and desktop
 - ⚡ **Fast**: Optimized image processing and storage
+- 🌍 **Internationalization (i18n)**: English, German, Italian, French, Spanish with auto-detection and manual switcher
 
 ## Tech Stack
 
@@ -82,6 +83,34 @@ A beautiful, self-hosted photo sharing platform for special events. Create magic
 6. **Open your browser**
    Navigate to [http://localhost:3000](http://localhost:3000)
 
+## Internationalization (i18n)
+
+This app supports 5 languages: English (`en`), German (`de`), Italian (`it`), French (`fr`), and Spanish (`es`).
+
+- Automatic locale detection is enabled via middleware (accept-language header). Unknown languages default to English.
+- Locale-aware routing is used: URLs include the locale segment, e.g. `/en/...`, `/de/...`.
+- A language switcher is provided in the UI header on supported pages.
+
+### How it works
+
+- We use `next-intl` for translations and locale-aware navigation.
+- Translations live in `messages/{locale}.json`.
+- The app is restructured to `app/[locale]/...` to scope pages per locale.
+- The middleware rewrites/redirects to include the locale segment.
+
+### Developer tips
+
+- Use `useTranslations('namespace')` in client components to fetch strings.
+- Use `Link` and `useRouter` from `@/navigation` to keep navigation locale-aware.
+- Date formatting uses `formatDate(date, locale)` from `lib/utils`.
+
+### Adding a new language
+
+1. Add a new JSON file in `messages/xx.json`.
+2. Add the locale to `messages/index.ts` and `navigation.ts` locales array.
+3. Update the language list in `components/language-switcher.tsx`.
+4. Optional: adjust any locale-specific formatting.
+
 ## Usage
 
 ### For Event Organizers
@@ -112,14 +141,17 @@ A beautiful, self-hosted photo sharing platform for special events. Create magic
 
 ```
 ├── app/                    # Next.js app directory
+│   ├── [locale]/          # Locale-scoped pages using next-intl
+│   │   ├── auth/          # Authentication pages
+│   │   ├── dashboard/     # Dashboard pages
+│   │   └── event/         # Guest upload pages
 │   ├── api/               # API routes
-│   ├── auth/              # Authentication pages
-│   ├── dashboard/         # Dashboard pages
-│   ├── event/             # Guest upload pages
 │   └── globals.css        # Global styles with animations
 ├── components/            # React components
 │   ├── ui/               # UI components with glassmorphism
 │   └── providers/        # Context providers
+├── messages/              # Translation files (en, de, it, fr, es)
+├── navigation.ts          # Locale-aware Link/router helpers
 ├── lib/                  # Utility functions
 ├── prisma/               # Database schema
 ├── uploads/              # Photo storage
