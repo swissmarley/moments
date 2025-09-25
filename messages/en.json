@@ -1,0 +1,262 @@
+{
+  "common": {
+    "brand": "Moments",
+    "signIn": "Sign In",
+    "signOut": "Sign Out",
+    "signUp": "Sign up",
+    "getStarted": "Get Started",
+    "getStartedFree": "Get Started Free",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "active": "Active",
+    "inactive": "Inactive",
+    "backToDashboard": "Back to Dashboard",
+    "viewEventPhotos": "View Event Photos",
+    "viewPhotos": "View Photos",
+    "shareEvent": "Share Event",
+    "download": "Download",
+    "downloadAll": "Download All",
+    "copied": "Copied!",
+    "linkCopied": "Link copied to clipboard",
+    "loading": "Loading...",
+    "welcome": "Welcome",
+    "welcomeBack": "Welcome Back",
+    "noEventsYet": "No events yet",
+    "createFirstEvent": "Create Your First Event",
+    "createNewEvent": "Create New Event",
+    "createEvent": "Create Event",
+    "language": {
+      "label": "Language",
+      "en": "English",
+      "de": "German",
+      "it": "Italian",
+      "fr": "French",
+      "es": "Spanish"
+    }
+  },
+  "home": {
+    "capture": "Capture Life's Beautiful Moments",
+    "hero": {
+      "share": "Share",
+      "beautiful": "Beautiful Moments",
+      "from": "from Your Events",
+      "description": "Create magical events, share QR codes with guests, and collect all photos in one stunning gallery. Perfect for weddings, parties, celebrations, and life's special moments.",
+      "start": "Start Creating Magic"
+    },
+    "features": {
+      "title": "How It Works",
+      "subtitle": "Simple, secure, and beautiful photo sharing for any event",
+      "create": {
+        "title": "Create Event",
+        "description": "Set up your event with details and get a unique QR code"
+      },
+      "share": {
+        "title": "Share with Guests",
+        "description": "Share the QR code or link with your event guests"
+      },
+      "collect": {
+        "title": "Collect Photos",
+        "description": "Guests upload photos with their names, you get them all"
+      }
+    },
+    "benefits": {
+      "title": "Why Choose Moments?",
+      "secure": {
+        "title": "Secure & Private",
+        "description": "Your photos are secure and only accessible to event creators"
+      },
+      "quality": {
+        "title": "High Quality",
+        "description": "Maintain original photo quality with smart compression"
+      },
+      "sharing": {
+        "title": "Easy Sharing",
+        "description": "Simple QR codes make sharing with guests effortless"
+      },
+      "selfHosted": {
+        "title": "Self-Hosted",
+        "description": "Full control over your data with self-hosting options"
+      }
+    },
+    "cta": {
+      "title": "Ready to Capture Beautiful Moments?",
+      "description": "Join thousands of event organizers who trust Moments to preserve their special memories"
+    },
+    "footer": {
+      "copyright": "© {year} Moments. All rights reserved. Made with ❤️ for capturing life's beautiful moments."
+    }
+  },
+  "signin": {
+    "title": "Welcome Back",
+    "description": "Sign in to your Moments account",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Sign In",
+    "noAccount": "Don't have an account?",
+    "goSignup": "Sign up",
+    "toast": {
+      "invalid": "Invalid email or password",
+      "signedIn": "Signed in successfully",
+      "generic": "Something went wrong. Please try again."
+    }
+  },
+  "signup": {
+    "title": "Create Account",
+    "description": "Join Moments to start capturing beautiful memories",
+    "fullName": "Full Name",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "placeholder": {
+      "fullName": "Enter your full name",
+      "email": "Enter your email",
+      "password": "Create a password",
+      "confirmPassword": "Confirm your password"
+    },
+    "submit": "Create Account",
+    "haveAccount": "Already have an account?",
+    "goSignin": "Sign in",
+    "toast": {
+      "passwordMismatch": "Passwords do not match",
+      "passwordTooShort": "Password must be at least 6 characters",
+      "created": "Account created successfully! Please sign in.",
+      "generic": "Something went wrong. Please try again."
+    }
+  },
+  "dashboard": {
+    "welcome": "Welcome, {name}",
+    "welcomeBack": "Welcome back, {name}!",
+    "manage": "Manage your events and view collected photos",
+    "createNewEvent": "Create New Event",
+    "noEvents": {
+      "title": "No events yet",
+      "description": "Create your first event to start collecting beautiful moments from your guests",
+      "cta": "Create Your First Event"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "photosCollected": "{count} photos collected"
+  },
+  "createEvent": {
+    "back": "Back to Dashboard",
+    "title": "Create New Event",
+    "details": "Event Details",
+    "detailsDescription": "Fill in the details for your event. You can always edit these later.",
+    "labels": {
+      "title": "Event Title *",
+      "titlePlaceholder": "e.g., John & Jane's Wedding",
+      "description": "Description",
+      "descriptionPlaceholder": "Tell your guests about the event...",
+      "date": "Event Date & Time *",
+      "location": "Location",
+      "locationPlaceholder": "e.g., Central Park, New York"
+    },
+    "info": {
+      "title": "What happens next?",
+      "body": "After creating your event, you'll get a unique QR code and link to share with your guests. They can scan the code or visit the link to upload photos directly to your event gallery."
+    },
+    "cancel": "Cancel",
+    "submit": "Create Event",
+    "toast": {
+      "created": "Event created successfully!",
+      "error": "Something went wrong",
+      "generic": "Something went wrong. Please try again."
+    }
+  },
+  "eventPhotos": {
+    "notFound": "Event not found",
+    "back": "Back to Dashboard",
+    "shareEvent": "Share Event",
+    "downloadAll": "Download All",
+    "details": "Event Details",
+    "eventInfo": "Event Information",
+    "photosCollected": "{count} photos collected",
+    "description": "Description",
+    "noPhotos": {
+      "title": "No photos yet",
+      "description": "Share your event with guests to start collecting photos"
+    },
+    "eventPhotos": "Event Photos ({count})",
+    "by": "by {name}",
+    "download": "Download",
+    "toast": {
+      "loadError": "Failed to load event data",
+      "downloadError": "Failed to download photo",
+      "comingSoon": "Feature Coming Soon",
+      "bulkSoon": "Bulk download will be available in a future update"
+    }
+  },
+  "shareEvent": {
+    "back": "Back to Dashboard",
+    "title": "Share Event",
+    "qr": {
+      "title": "QR Code",
+      "description": "Guests can scan this QR code to upload photos",
+      "download": "Download QR Code"
+    },
+    "link": {
+      "title": "Share Link",
+      "description": "Copy and share this link with your guests",
+      "label": "Event Upload Link"
+    },
+    "copy": "Copy",
+    "share": "Share Event",
+    "instructions": {
+      "title": "Instructions for Guests",
+      "description": "Here's what your guests will see when they access the upload page",
+      "step1Title": "Scan QR Code or Visit Link",
+      "step1Desc": "Guests can scan the QR code with their phone camera or visit the share link",
+      "step2Title": "Enter Their Name",
+      "step2Desc": "Guests will be asked to enter their name to identify their photos",
+      "step3Title": "Upload Photos",
+      "step3Desc": "They can select and upload multiple photos from their device",
+      "step4Title": "Photos Appear in Your Gallery",
+      "step4Desc": "All uploaded photos will appear in your event dashboard"
+    },
+    "actions": {
+      "viewPhotos": "View Event Photos",
+      "backToDashboard": "Back to Dashboard"
+    },
+    "toast": {
+      "eventNotFound": "Event not found",
+      "failedToLoad": "Failed to load event",
+      "copied": "Copied!",
+      "copyFailed": "Failed to copy to clipboard"
+    },
+    "nativeShare": "Join me at {title}! Upload your photos here:"
+  },
+  "upload": {
+    "eventNotFound": "Event Not Found",
+    "eventNotFoundDesc": "This event doesn't exist or is no longer active.",
+    "title": "Upload Your Photos",
+    "description": "Share your memories from this special event",
+    "yourName": "Your Name *",
+    "enterYourName": "Enter your name",
+    "selectPhotos": "Select Photos *",
+    "dragDrop": "Drag & drop photos here, or click to select",
+    "supports": "Supports JPEG, PNG, WebP (max 10MB each)",
+    "dropHere": "Drop the files here...",
+    "selectedPhotos": "Selected Photos ({count})",
+    "uploadPhotos": "Upload Photos",
+    "uploading": "Uploading...",
+    "howItWorks": "How it works:",
+    "instructions": "Enter your name, select your photos, and click upload. Your photos will be added to the event gallery for everyone to enjoy!",
+    "toast": {
+      "eventNotFoundInactive": "Event not found or inactive",
+      "failedToLoad": "Failed to load event",
+      "enterYourName": "Please enter your name",
+      "selectOne": "Please select at least one valid photo",
+      "success": "{count} photo(s) uploaded successfully",
+      "failed": "Upload failed. Please try again."
+    },
+    "fileError": {
+      "fileTooLarge": "File size must be less than 10MB",
+      "invalidType": "Only JPEG, PNG, and WebP images are allowed"
+    }
+  }
+}
+
+

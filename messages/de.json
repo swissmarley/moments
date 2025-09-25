@@ -1,0 +1,262 @@
+{
+  "common": {
+    "brand": "Moments",
+    "signIn": "Anmelden",
+    "signOut": "Abmelden",
+    "signUp": "Registrieren",
+    "getStarted": "Loslegen",
+    "getStartedFree": "Kostenlos starten",
+    "error": "Fehler",
+    "success": "Erfolg",
+    "cancel": "Abbrechen",
+    "active": "Aktiv",
+    "inactive": "Inaktiv",
+    "backToDashboard": "Zurück zum Dashboard",
+    "viewEventPhotos": "Event-Fotos ansehen",
+    "viewPhotos": "Fotos ansehen",
+    "shareEvent": "Event teilen",
+    "download": "Herunterladen",
+    "downloadAll": "Alle herunterladen",
+    "copied": "Kopiert!",
+    "linkCopied": "Link in die Zwischenablage kopiert",
+    "loading": "Laden...",
+    "welcome": "Willkommen",
+    "welcomeBack": "Willkommen zurück",
+    "noEventsYet": "Noch keine Events",
+    "createFirstEvent": "Erstes Event erstellen",
+    "createNewEvent": "Neues Event erstellen",
+    "createEvent": "Event erstellen",
+    "language": {
+      "label": "Sprache",
+      "en": "Englisch",
+      "de": "Deutsch",
+      "it": "Italienisch",
+      "fr": "Französisch",
+      "es": "Spanisch"
+    }
+  },
+  "home": {
+    "capture": "Die schönen Momente des Lebens festhalten",
+    "hero": {
+      "share": "Teilen",
+      "beautiful": "Wunderschöne Momente",
+      "from": "von Ihren Events",
+      "description": "Erstellen Sie magische Events, teilen Sie QR-Codes mit Gästen und sammeln Sie alle Fotos in einer atemberaubenden Galerie. Perfekt für Hochzeiten, Partys, Feiern und die besonderen Momente des Lebens.",
+      "start": "Magie erschaffen starten"
+    },
+    "features": {
+      "title": "So funktioniert's",
+      "subtitle": "Einfaches, sicheres und schönes Foto-Sharing für jedes Event",
+      "create": {
+        "title": "Event erstellen",
+        "description": "Richten Sie Ihr Event ein und erhalten Sie einen eindeutigen QR-Code"
+      },
+      "share": {
+        "title": "Mit Gästen teilen",
+        "description": "Teilen Sie den QR-Code oder Link mit Ihren Gästen"
+      },
+      "collect": {
+        "title": "Fotos sammeln",
+        "description": "Gäste laden Fotos mit ihrem Namen hoch, Sie erhalten alle"
+      }
+    },
+    "benefits": {
+      "title": "Warum Moments?",
+      "secure": {
+        "title": "Sicher & Privat",
+        "description": "Ihre Fotos sind sicher und nur für Event-Ersteller zugänglich"
+      },
+      "quality": {
+        "title": "Hohe Qualität",
+        "description": "Originalqualität mit intelligenter Komprimierung erhalten"
+      },
+      "sharing": {
+        "title": "Einfaches Teilen",
+        "description": "Einfache QR-Codes machen das Teilen mühelos"
+      },
+      "selfHosted": {
+        "title": "Selbst gehostet",
+        "description": "Volle Kontrolle über Ihre Daten mit Self-Hosting"
+      }
+    },
+    "cta": {
+      "title": "Bereit, wunderschöne Momente festzuhalten?",
+      "description": "Schließen Sie sich Tausenden von Veranstaltern an, die Moments vertrauen"
+    },
+    "footer": {
+      "copyright": "© {year} Moments. Alle Rechte vorbehalten. Mit ❤️ gemacht, um die schönen Momente des Lebens festzuhalten."
+    }
+  },
+  "signin": {
+    "title": "Willkommen zurück",
+    "description": "Melden Sie sich bei Ihrem Moments-Konto an",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "submit": "Anmelden",
+    "noAccount": "Noch kein Konto?",
+    "goSignup": "Registrieren",
+    "toast": {
+      "invalid": "Ungültige E-Mail oder Passwort",
+      "signedIn": "Erfolgreich angemeldet",
+      "generic": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut."
+    }
+  },
+  "signup": {
+    "title": "Konto erstellen",
+    "description": "Treten Sie Moments bei, um wunderschöne Erinnerungen festzuhalten",
+    "fullName": "Vollständiger Name",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "confirmPassword": "Passwort bestätigen",
+    "placeholder": {
+      "fullName": "Geben Sie Ihren vollständigen Namen ein",
+      "email": "Geben Sie Ihre E-Mail ein",
+      "password": "Erstellen Sie ein Passwort",
+      "confirmPassword": "Bestätigen Sie Ihr Passwort"
+    },
+    "submit": "Konto erstellen",
+    "haveAccount": "Bereits ein Konto?",
+    "goSignin": "Anmelden",
+    "toast": {
+      "passwordMismatch": "Passwörter stimmen nicht überein",
+      "passwordTooShort": "Passwort muss mindestens 6 Zeichen lang sein",
+      "created": "Konto erfolgreich erstellt! Bitte anmelden.",
+      "generic": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut."
+    }
+  },
+  "dashboard": {
+    "welcome": "Willkommen, {name}",
+    "welcomeBack": "Willkommen zurück, {name}!",
+    "manage": "Verwalten Sie Ihre Events und sehen Sie gesammelte Fotos",
+    "createNewEvent": "Neues Event erstellen",
+    "noEvents": {
+      "title": "Noch keine Events",
+      "description": "Erstellen Sie Ihr erstes Event, um Fotos von Gästen zu sammeln",
+      "cta": "Erstes Event erstellen"
+    },
+    "status": {
+      "active": "Aktiv",
+      "inactive": "Inaktiv"
+    },
+    "photosCollected": "{count} Fotos gesammelt"
+  },
+  "createEvent": {
+    "back": "Zurück zum Dashboard",
+    "title": "Neues Event erstellen",
+    "details": "Eventdetails",
+    "detailsDescription": "Füllen Sie die Details für Ihr Event aus. Sie können diese später bearbeiten.",
+    "labels": {
+      "title": "Eventtitel *",
+      "titlePlaceholder": "z. B. Johns & Janes Hochzeit",
+      "description": "Beschreibung",
+      "descriptionPlaceholder": "Erzählen Sie Ihren Gästen vom Event...",
+      "date": "Eventdatum & -zeit *",
+      "location": "Ort",
+      "locationPlaceholder": "z. B. Central Park, New York"
+    },
+    "info": {
+      "title": "Wie geht es weiter?",
+      "body": "Nach der Erstellung erhalten Sie einen QR-Code und Link, um mit Gästen zu teilen. Gäste können so Fotos direkt in Ihre Galerie hochladen."
+    },
+    "cancel": "Abbrechen",
+    "submit": "Event erstellen",
+    "toast": {
+      "created": "Event erfolgreich erstellt!",
+      "error": "Etwas ist schiefgelaufen",
+      "generic": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut."
+    }
+  },
+  "eventPhotos": {
+    "notFound": "Event nicht gefunden",
+    "back": "Zurück zum Dashboard",
+    "shareEvent": "Event teilen",
+    "downloadAll": "Alle herunterladen",
+    "details": "Eventdetails",
+    "eventInfo": "Eventinformationen",
+    "photosCollected": "{count} Fotos gesammelt",
+    "description": "Beschreibung",
+    "noPhotos": {
+      "title": "Noch keine Fotos",
+      "description": "Teilen Sie Ihr Event mit Gästen, um Fotos zu sammeln"
+    },
+    "eventPhotos": "Event-Fotos ({count})",
+    "by": "von {name}",
+    "download": "Herunterladen",
+    "toast": {
+      "loadError": "Eventdaten konnten nicht geladen werden",
+      "downloadError": "Foto konnte nicht heruntergeladen werden",
+      "comingSoon": "Funktion kommt bald",
+      "bulkSoon": "Sammel-Download wird in einem zukünftigen Update verfügbar sein"
+    }
+  },
+  "shareEvent": {
+    "back": "Zurück zum Dashboard",
+    "title": "Event teilen",
+    "qr": {
+      "title": "QR-Code",
+      "description": "Gäste können diesen QR-Code scannen, um Fotos hochzuladen",
+      "download": "QR-Code herunterladen"
+    },
+    "link": {
+      "title": "Link teilen",
+      "description": "Kopieren und teilen Sie diesen Link mit Ihren Gästen",
+      "label": "Upload-Link für Event"
+    },
+    "copy": "Kopieren",
+    "share": "Event teilen",
+    "instructions": {
+      "title": "Anleitung für Gäste",
+      "description": "Das sehen Ihre Gäste auf der Upload-Seite",
+      "step1Title": "QR-Code scannen oder Link besuchen",
+      "step1Desc": "Gäste scannen den QR-Code mit der Handykamera oder besuchen den Link",
+      "step2Title": "Namen eingeben",
+      "step2Desc": "Gäste geben ihren Namen ein, um Fotos zuzuordnen",
+      "step3Title": "Fotos hochladen",
+      "step3Desc": "Mehrere Fotos vom Gerät auswählen und hochladen",
+      "step4Title": "Fotos erscheinen in Ihrer Galerie",
+      "step4Desc": "Alle Fotos erscheinen im Event-Dashboard"
+    },
+    "actions": {
+      "viewPhotos": "Event-Fotos ansehen",
+      "backToDashboard": "Zurück zum Dashboard"
+    },
+    "toast": {
+      "eventNotFound": "Event nicht gefunden",
+      "failedToLoad": "Event konnte nicht geladen werden",
+      "copied": "Kopiert!",
+      "copyFailed": "Kopieren in Zwischenablage fehlgeschlagen"
+    },
+    "nativeShare": "Komm zu {title}! Lade deine Fotos hier hoch:"
+  },
+  "upload": {
+    "eventNotFound": "Event nicht gefunden",
+    "eventNotFoundDesc": "Dieses Event existiert nicht oder ist nicht mehr aktiv.",
+    "title": "Lade deine Fotos hoch",
+    "description": "Teile deine Erinnerungen an dieses besondere Event",
+    "yourName": "Dein Name *",
+    "enterYourName": "Gib deinen Namen ein",
+    "selectPhotos": "Fotos auswählen *",
+    "dragDrop": "Fotos hierher ziehen und ablegen oder klicken, um auszuwählen",
+    "supports": "Unterstützt JPEG, PNG, WebP (max. 10 MB pro Datei)",
+    "dropHere": "Dateien hier ablegen...",
+    "selectedPhotos": "Ausgewählte Fotos ({count})",
+    "uploadPhotos": "Fotos hochladen",
+    "uploading": "Wird hochgeladen...",
+    "howItWorks": "So funktioniert's:",
+    "instructions": "Gib deinen Namen ein, wähle deine Fotos und klicke auf Hochladen. Deine Fotos werden der Event-Galerie hinzugefügt!",
+    "toast": {
+      "eventNotFoundInactive": "Event nicht gefunden oder inaktiv",
+      "failedToLoad": "Event konnte nicht geladen werden",
+      "enterYourName": "Bitte gib deinen Namen ein",
+      "selectOne": "Bitte wähle mindestens ein gültiges Foto aus",
+      "success": "{count} Foto(s) erfolgreich hochgeladen",
+      "failed": "Upload fehlgeschlagen. Bitte versuche es erneut."
+    },
+    "fileError": {
+      "fileTooLarge": "Dateigröße muss unter 10 MB liegen",
+      "invalidType": "Nur JPEG-, PNG- und WebP-Bilder sind erlaubt"
+    }
+  }
+}
+
+
