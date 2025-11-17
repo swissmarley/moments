@@ -5,13 +5,13 @@ RUN apk add --no-cache libc6-compat
 FROM base AS deps
 WORKDIR /app
 COPY package.json package-lock.json* ./
-RUN npm ci --only=production --legacy-peer-deps
+RUN npm install --legacy-peer-deps --omit=dev
 
 # Full deps for building
 FROM base AS full-deps
 WORKDIR /app
 COPY package.json package-lock.json* ./
-RUN npm ci --legacy-peer-deps
+RUN npm install --legacy-peer-deps
 
 # Builder stage
 FROM base AS builder
@@ -25,8 +25,10 @@ COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV SKIP_ENV_VALIDATION=true
 ENV NODE_ENV=production
+ENV NODE_OPTIONS=--max-old-space-size=3072
 
-# Generate Prisma client
+# Generate Prisma client BEFORE build
+COPY prisma ./prisma
 RUN npx prisma generate
 
 # Build application
@@ -54,6 +56,9 @@ COPY --from=builder /app/public ./public 2>/dev/null || true
 COPY --from=builder /app/prisma ./prisma
 COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
 COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
+
+# Copy runtime dependencies only
+COPY --from=deps /app/node_modules ./node_modules
 
 # Create uploads directory
 RUN mkdir -p uploads && chown -R nextjs:nodejs uploads
