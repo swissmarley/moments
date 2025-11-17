@@ -29,8 +29,8 @@ ENV NODE_ENV=production
 # Generate Prisma client
 RUN npx prisma generate
 
-# Build application with better error handling
-RUN npm run build || (echo "Build failed, checking logs..." && exit 1)
+# Build application
+RUN npm run build
 
 # Production runner
 FROM base AS runner
@@ -38,6 +38,8 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
 
 # Create app user
 RUN addgroup --system --gid 1001 nodejs && \
@@ -58,8 +60,5 @@ RUN mkdir -p uploads && chown -R nextjs:nodejs uploads
 
 USER nextjs
 EXPOSE 3000
-
-ENV PORT=3000
-HOSTNAME="0.0.0.0"
 
 CMD ["node", "server.js"]
