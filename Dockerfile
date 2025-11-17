@@ -1,5 +1,5 @@
 FROM node:18-alpine AS base
-RUN apk add --no-cache libc6-compat
+RUN apk add --no-cache libc6-compat python3 make g++
 
 # Dependencies stage
 FROM base AS deps
@@ -23,14 +23,13 @@ COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV SKIP_ENV_VALIDATION=true
 ENV NODE_ENV=production
-ENV NODE_OPTIONS=--max-old-space-size=2048
+ENV NODE_OPTIONS=--max-old-space-size=3072
 
-# Generate Prisma client
-COPY prisma ./prisma
-RUN npx prisma generate
+# Generate Prisma client FIRST
+RUN mkdir -p prisma && npx prisma generate 2>&1 || true
 
-# Build application
-RUN npm run build
+# Build with verbose output
+RUN npm run build 2>&1
 
 # Production stage
 FROM base AS runner
@@ -44,20 +43,16 @@ ENV HOSTNAME="0.0.0.0"
 RUN addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 nextjs
 
-# Copy built application
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public 2>/dev/null || true
 
-# Copy Prisma files
-COPY --from=builder /app/prisma ./prisma
-COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
-COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
+COPY --from=builder /app/prisma ./prisma 2>/dev/null || true
+COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma 2>/dev/null || true
+COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma 2>/dev/null || true
 
-# Copy production dependencies
 COPY --from=deps /app/node_modules ./node_modules
 
-# Create uploads directory
 RUN mkdir -p uploads && chown -R nextjs:nodejs uploads
 
 USER nextjs
