@@ -2,7 +2,13 @@ version: '3.8'
 
 services:
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+      # Limit memory during build to prevent GitHub Actions failures
+      args:
+        - NODE_OPTIONS=--max-old-space-size=2048
+    container_name: moments-app
     ports:
       - "3000:3000"
     environment:
@@ -10,13 +16,17 @@ services:
       - NEXTAUTH_URL=http://localhost:3000
       - NEXTAUTH_SECRET=your-secret-key-here
       - NEXT_PUBLIC_APP_URL=http://localhost:3000
+      - NODE_ENV=production
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     volumes:
       - ./uploads:/app/uploads
+    restart: unless-stopped
 
   db:
     image: postgres:15-alpine
+    container_name: moments-db
     environment:
       - POSTGRES_DB=event_photo_cloud
       - POSTGRES_USER=postgres
@@ -25,11 +35,12 @@ services:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
 
 volumes:
   postgres_data:
-
-
-
-
-
