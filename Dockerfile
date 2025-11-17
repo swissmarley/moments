@@ -1,55 +1,65 @@
 FROM node:18-alpine AS base
-
-# Install dependencies only when needed
-FROM base AS deps
 RUN apk add --no-cache libc6-compat
+
+# Dependencies stage
+FROM base AS deps
 WORKDIR /app
-
-# Install dependencies based on the preferred package manager
 COPY package.json package-lock.json* ./
-RUN npm install
+RUN npm ci --only=production --legacy-peer-deps
 
-# Rebuild the source code only when needed
+# Full deps for building
+FROM base AS full-deps
+WORKDIR /app
+COPY package.json package-lock.json* ./
+RUN npm ci --legacy-peer-deps
+
+# Builder stage
 FROM base AS builder
 WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
+
+# Copy all dependencies
+COPY --from=full-deps /app/node_modules ./node_modules
 COPY . .
 
-# Generate Prisma client AFTER copying all files
+# Set environment for build
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV SKIP_ENV_VALIDATION=true
+ENV NODE_ENV=production
+
+# Generate Prisma client
 RUN npx prisma generate
 
-# Build the application
-RUN npm run build
+# Build application with better error handling
+RUN npm run build || (echo "Build failed, checking logs..." && exit 1)
 
-# Production image, copy all the files and run next
+# Production runner
 FROM base AS runner
 WORKDIR /app
 
-ENV NODE_ENV production
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
 
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+# Create app user
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nextjs
 
-# Copy built application
+# Copy built files
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /app/public ./public 2>/dev/null || true
 
-# Copy Prisma files and generated client
+# Copy Prisma
 COPY --from=builder /app/prisma ./prisma
 COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
 COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
 
 # Create uploads directory
-RUN mkdir -p uploads && chown nextjs:nodejs uploads
+RUN mkdir -p uploads && chown -R nextjs:nodejs uploads
 
 USER nextjs
-
 EXPOSE 3000
 
-ENV PORT 3000
-ENV HOSTNAME "0.0.0.0"
+ENV PORT=3000
+HOSTNAME="0.0.0.0"
 
 CMD ["node", "server.js"]
-
-
-
