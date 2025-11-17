@@ -12,7 +12,10 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+    permissions:
+      contents: read
+      packages: write
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -20,18 +23,10 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Install Docker Compose
+      - name: Set up Docker Compose
         run: |
           sudo apt-get update
           sudo apt-get install -y docker-compose
-
-      - name: Cache Docker layers
-        uses: actions/cache@v3
-        with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-buildx-
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
@@ -40,53 +35,48 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Pull base images
+      - name: Build Docker image with compose
         run: |
-          docker pull postgres:15-alpine
+          docker-compose build --no-cache app
+        env:
+          NODE_OPTIONS: "--max-old-space-size=2048"
 
-      - name: Build custom services from docker-compose
+      - name: Tag images for GHCR
         run: |
-          # Build services
-          docker-compose build
-
-      - name: Tag and push images to GHCR
-        run: |
-          # Define services to push (only custom built images)
-          CUSTOM_SERVICES=("moments)
+          IMAGE_ID="${{ env.REGISTRY }}/${{ github.repository }}"
+          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
           
-          for SERVICE in "${CUSTOM_SERVICES[@]}"; do
-            # Convert service name to lowercase for image name
-            IMAGE_NAME=$(echo "$SERVICE" | tr '[:upper:]' '[:lower:]')
-            
-            # Define image tags
-            GHCR_IMAGE="${{ env.REGISTRY }}/${{ github.repository }}:${IMAGE_NAME}-latest"
-            GHCR_IMAGE_SHA="${{ env.REGISTRY }}/${{ github.repository }}:${IMAGE_NAME}-${{ github.sha }}"
-            
-            # Tag images
-            docker tag "banking-system_${SERVICE}" "$GHCR_IMAGE"
-            docker tag "banking-system_${SERVICE}" "$GHCR_IMAGE_SHA"
-            
-            # Push to GHCR
-            echo "📦 Pushing $SERVICE to GHCR..."
-            docker push "$GHCR_IMAGE"
-            docker push "$GHCR_IMAGE_SHA"
-            
-            echo "✅ Successfully pushed $SERVICE"
-          done
+          # Get the current app image name from docker-compose
+          CONTAINER_ID=$(docker-compose ps -q app)
+          docker tag moments-app:latest "$IMAGE_ID:latest"
+          docker tag moments-app:latest "$IMAGE_ID:${{ github.sha }}"
 
-      - name: Logout from GitHub Container Registry
+      - name: Push to GHCR
+        run: |
+          IMAGE_ID="${{ env.REGISTRY }}/${{ github.repository }}"
+          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+          
+          docker push "$IMAGE_ID:latest"
+          docker push "$IMAGE_ID:${{ github.sha }}"
+          
+          echo "✅ Successfully pushed to GHCR"
+
+      - name: Logout from GHCR
         if: always()
         run: docker logout ${{ env.REGISTRY }}
 
       - name: Summary
         run: |
+          IMAGE_ID="${{ env.REGISTRY }}/${{ github.repository }}"
+          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+          
           echo "## 🎉 Build Summary" >> $GITHUB_STEP_SUMMARY
-          echo "✅ Custom images pushed to: \`${{ env.REGISTRY }}/${{ github.repository }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Image pushed to GHCR: \`$IMAGE_ID:latest\`" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### 📦 Images Pushed:" >> $GITHUB_STEP_SUMMARY
-          echo "- \`moments-latest\` (\`moments-${{ github.sha }}\`)" >> $GITHUB_STEP_SUMMARY
+          echo "### 📦 Tags:" >> $GITHUB_STEP_SUMMARY
+          echo "- \`latest\`" >> $GITHUB_STEP_SUMMARY
+          echo "- \`${{ github.sha }}\`" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### ℹ️ Note:" >> $GITHUB_STEP_SUMMARY
-          echo "Base images (postgres:15-alpine, nginx-proxy-manager:2.11.3) are used as-is from Docker Hub" >> $GITHUB_STEP_SUMMARY
+          echo "### ℹ️ Details:" >> $GITHUB_STEP_SUMMARY
           echo "- Commit: \`${{ github.sha }}\`" >> $GITHUB_STEP_SUMMARY
           echo "- Branch: \`${{ github.ref }}\`" >> $GITHUB_STEP_SUMMARY
