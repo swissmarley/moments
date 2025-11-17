@@ -26,7 +26,7 @@ export function LanguageSwitcher() {
         value={locale}
         onValueChange={(nextLocale) => {
           startTransition(() => {
-            router.replace(pathname, {locale: nextLocale})
+            router.replace(pathname, {locale: nextLocale as "en" | "de" | "it" | "fr" | "es"})
           })
         }}
         disabled={isPending}
