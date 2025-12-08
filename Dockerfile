@@ -26,7 +26,7 @@ ENV NODE_ENV=production
 ENV NODE_OPTIONS=--max-old-space-size=3072
 
 # Generate Prisma client FIRST
-RUN mkdir -p prisma && npx prisma generate 2>&1 || true
+RUN mkdir -p prisma && npx prisma generate 2>&1
 
 # Build with verbose output
 RUN npm run build 2>&1
