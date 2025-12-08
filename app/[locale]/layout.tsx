@@ -4,8 +4,6 @@ import '../globals.css'
 import { AuthProvider } from '@/components/providers/auth-provider'
 import { Toaster } from '@/components/ui/toaster'
 import { NextIntlClientProvider } from 'next-intl'
-import { getRequestConfig } from 'next-intl/server' // We don't need this, just unstable_setRequestLocale
-import { unstable_setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -13,10 +11,6 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Moments',
   description: 'Capture and share beautiful moments from your special events',
-}
-
-export function generateStaticParams() {
-  return [{ locale: 'en' }, { locale: 'de' }, { locale: 'it' }, { locale: 'fr' }, { locale: 'es' }]
 }
 
 async function getMessages(locale: string) {
@@ -36,9 +30,6 @@ export default async function LocaleLayout({
   params: { locale: string }
 }) {
   const { locale } = params
-
-  // Enable static rendering
-  unstable_setRequestLocale(locale);
 
   const messages = await getMessages(locale)
 
