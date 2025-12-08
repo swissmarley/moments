@@ -1,4 +1,7 @@
-const withNextIntl = require('next-intl/plugin')('./i18n/request.ts')
+const path = require('path');
+const withNextIntl = require('next-intl/plugin')(
+  path.resolve(__dirname, './lib/i18n-request.ts')
+);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
