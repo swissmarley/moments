@@ -12,6 +12,8 @@ import { useTranslations } from 'next-intl'
 import { LanguageSwitcher } from '@/components/language-switcher'
 import { useLocale } from 'next-intl'
 
+export const dynamic = 'force-dynamic'
+
 interface Event {
   id: string
   title: string
@@ -75,7 +77,7 @@ export default function DashboardPage() {
           </div>
           <div className="flex items-center space-x-4">
             <LanguageSwitcher />
-            <span className="text-sm text-gray-600">{t('welcome', {name: session?.user?.name || ''})}</span>
+            <span className="text-sm text-gray-600">{t('welcome', { name: session?.user?.name || '' })}</span>
             <Button variant="outline" onClick={() => { window.location.href = '/api/auth/signout' }}>
               {tc('signOut')}
             </Button>
@@ -85,7 +87,7 @@ export default function DashboardPage() {
 
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">{t('welcomeBack', {name: session?.user?.name || ''})}</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-2">{t('welcomeBack', { name: session?.user?.name || '' })}</h2>
           <p className="text-gray-600">{t('manage')}</p>
         </div>
 
@@ -147,7 +149,7 @@ export default function DashboardPage() {
                     )}
                     <div className="flex items-center text-sm text-gray-600">
                       <Users className="mr-2 h-4 w-4" />
-                      {t('photosCollected', {count: event._count.photos})}
+                      {t('photosCollected', { count: event._count.photos })}
                     </div>
                   </div>
                   <div className="flex space-x-2 mt-6">

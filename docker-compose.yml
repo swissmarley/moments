@@ -11,7 +11,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - DATABASE_URL=postgresql://username:password@db:5432/event_photo_cloud
+      - DATABASE_URL=postgresql://username:password@db:5432/moments
       - NEXTAUTH_URL=http://localhost:3000
       - NEXTAUTH_SECRET=your-secret-key-here
       - NEXT_PUBLIC_APP_URL=http://localhost:3000

@@ -9,6 +9,8 @@ import { Link, useRouter } from '@/navigation'
 import { useLocale, useTranslations } from 'next-intl'
 import { LanguageSwitcher } from '@/components/language-switcher'
 
+export const dynamic = 'force-dynamic'
+
 export default function HomePage() {
   const { data: session, status } = useSession()
   const router = useRouter()
@@ -38,10 +40,10 @@ export default function HomePage() {
     <div className="min-h-screen animated-bg relative overflow-hidden">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="particle w-2 h-2 top-1/4 left-1/4 animate-float"></div>
-        <div className="particle w-3 h-3 top-1/3 right-1/4 animate-float" style={{animationDelay: '-1s'}}></div>
-        <div className="particle w-1 h-1 bottom-1/4 left-1/3 animate-float" style={{animationDelay: '-2s'}}></div>
-        <div className="particle w-2 h-2 bottom-1/3 right-1/3 animate-float" style={{animationDelay: '-3s'}}></div>
-        <div className="particle w-1 h-1 top-1/2 left-1/2 animate-float" style={{animationDelay: '-4s'}}></div>
+        <div className="particle w-3 h-3 top-1/3 right-1/4 animate-float" style={{ animationDelay: '-1s' }}></div>
+        <div className="particle w-1 h-1 bottom-1/4 left-1/3 animate-float" style={{ animationDelay: '-2s' }}></div>
+        <div className="particle w-2 h-2 bottom-1/3 right-1/3 animate-float" style={{ animationDelay: '-3s' }}></div>
+        <div className="particle w-1 h-1 top-1/2 left-1/2 animate-float" style={{ animationDelay: '-4s' }}></div>
       </div>
 
       <header className="relative z-10 glass border-b border-white/20">
