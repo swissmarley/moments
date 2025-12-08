@@ -11,6 +11,8 @@ import { ArrowLeft, Loader2, Calendar, MapPin, FileText } from 'lucide-react'
 import { Link } from '@/navigation'
 import { useTranslations } from 'next-intl'
 
+export const dynamic = 'force-dynamic'
+
 export default function CreateEventPage() {
   const [formData, setFormData] = useState({ title: '', description: '', date: '', location: '' })
   const [isLoading, setIsLoading] = useState(false)

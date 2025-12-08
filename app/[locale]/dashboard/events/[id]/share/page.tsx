@@ -53,8 +53,33 @@ export default function ShareEventPage() {
   }
 
   const copyToClipboard = async (text: string) => {
-    try { await navigator.clipboard.writeText(text); toast({ title: t('toast.copied'), description: tc('linkCopied') }) }
-    catch { toast({ title: tc('error'), description: t('toast.copyFailed'), variant: 'destructive' }) }
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text)
+        toast({ title: t('toast.copied'), description: tc('linkCopied') })
+      } else {
+        // Fallback for non-secure contexts (HTTP)
+        const textArea = document.createElement("textarea")
+        textArea.value = text
+        textArea.style.position = "fixed"
+        textArea.style.left = "-9999px"
+        textArea.style.top = "0"
+        document.body.appendChild(textArea)
+        textArea.focus()
+        textArea.select()
+        try {
+          document.execCommand('copy')
+          toast({ title: t('toast.copied'), description: tc('linkCopied') })
+        } catch (err) {
+          console.error('Fallback: Oops, unable to copy', err)
+          toast({ title: tc('error'), description: t('toast.copyFailed'), variant: 'destructive' })
+        }
+        document.body.removeChild(textArea)
+      }
+    } catch (err) {
+      console.error('Failed to copy: ', err)
+      toast({ title: tc('error'), description: t('toast.copyFailed'), variant: 'destructive' })
+    }
   }
 
   const downloadQRCode = () => {
@@ -63,7 +88,7 @@ export default function ShareEventPage() {
 
   const shareNative = async () => {
     if (navigator.share) {
-      try { await navigator.share({ title: event?.title, text: t('nativeShare', {title: event?.title || ''}), url: shareUrl }) } catch {}
+      try { await navigator.share({ title: event?.title, text: t('nativeShare', { title: event?.title || '' }), url: shareUrl }) } catch { }
     } else { copyToClipboard(shareUrl) }
   }
 

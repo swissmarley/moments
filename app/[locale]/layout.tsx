@@ -13,10 +13,6 @@ export const metadata: Metadata = {
   description: 'Capture and share beautiful moments from your special events',
 }
 
-export function generateStaticParams() {
-  return [{ locale: 'en' }, { locale: 'de' }, { locale: 'it' }, { locale: 'fr' }, { locale: 'es' }]
-}
-
 async function getMessages(locale: string) {
   try {
     const messages = (await import(`@/messages/${locale}.json`)).default
@@ -34,6 +30,7 @@ export default async function LocaleLayout({
   params: { locale: string }
 }) {
   const { locale } = params
+
   const messages = await getMessages(locale)
 
   if (!['en', 'de', 'it', 'fr', 'es'].includes(locale)) {
