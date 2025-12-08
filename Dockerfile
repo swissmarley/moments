@@ -1,5 +1,5 @@
 FROM node:18-alpine AS base
-RUN apk add --no-cache libc6-compat python3 make g++
+RUN apk add --no-cache libc6-compat python3 make g++ openssl
 
 # Dependencies stage
 FROM base AS deps

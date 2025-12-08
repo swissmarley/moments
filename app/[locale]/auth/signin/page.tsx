@@ -12,6 +12,8 @@ import { useToast } from '@/hooks/use-toast'
 import { Camera, Loader2 } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
+export const dynamic = 'force-dynamic'
+
 export default function SignInPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -49,8 +51,8 @@ export default function SignInPage() {
     <div className="min-h-screen flex items-center justify-center animated-bg relative overflow-hidden p-4">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="particle w-2 h-2 top-1/4 left-1/4 animate-float"></div>
-        <div className="particle w-3 h-3 top-1/3 right-1/4 animate-float" style={{animationDelay: '-1s'}}></div>
-        <div className="particle w-1 h-1 bottom-1/4 left-1/3 animate-float" style={{animationDelay: '-2s'}}></div>
+        <div className="particle w-3 h-3 top-1/3 right-1/4 animate-float" style={{ animationDelay: '-1s' }}></div>
+        <div className="particle w-1 h-1 bottom-1/4 left-1/3 animate-float" style={{ animationDelay: '-2s' }}></div>
       </div>
       <Card className="w-full max-w-md glass border-white/20 relative z-10">
         <CardHeader className="text-center">

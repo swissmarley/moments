@@ -5,14 +5,13 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      # Limit memory during build to prevent GitHub Actions failures
       args:
         - NODE_OPTIONS=--max-old-space-size=2048
     container_name: moments-app
     ports:
       - "3000:3000"
     environment:
-      - DATABASE_URL=postgresql://postgres:password@db:5432/event_photo_cloud
+      - DATABASE_URL=postgresql://username:password@db:5432/event_photo_cloud
       - NEXTAUTH_URL=http://localhost:3000
       - NEXTAUTH_SECRET=your-secret-key-here
       - NEXT_PUBLIC_APP_URL=http://localhost:3000
@@ -28,8 +27,8 @@ services:
     image: postgres:15-alpine
     container_name: moments-db
     environment:
-      - POSTGRES_DB=event_photo_cloud
-      - POSTGRES_USER=postgres
+      - POSTGRES_DB=moments
+      - POSTGRES_USER=username
       - POSTGRES_PASSWORD=password
     volumes:
       - postgres_data:/var/lib/postgresql/data
